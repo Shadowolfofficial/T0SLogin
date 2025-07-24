@@ -1,33 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    // Fonction pour générer le lien avec la date et l'heure actuelle
-    function generateLink() {
-      var currentDate = new Date();
-      var link = "https://t0s.pages.dev/?tos=" + currentDate.getTime();
-      // Utilisation de window.location.href avec window.location.replace pour éviter d'enregistrer la redirection dans l'historique
-      window.location.href = link;
-      window.location.replace(link);
+    // Génère et redirige automatiquement
+    window.onload = function() {
+      const exp = Date.now() + 60*1000;
+      const token = btoa(`${exp}-${Math.floor(Math.random()*1e7)}`);
+      // Redirige vers la racine avec paramètres (ou adapte le chemin si besoin)
+      window.location.replace(`https://t0s.pages.dev/?tok=${token}&exp=${exp}`);
     }
-
-    // Appelle la fonction pour générer le lien lors du chargement de la page
-    window.onload = generateLink;
   </script>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KBT33FBJ');</script>
-<!-- End Google Tag Manager -->
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBT33FBJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 </body>
 </html>
