@@ -1,161 +1,157 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090b12">
-  <title>ThunderOs</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090b12">
+<title>ThunderOS — Chargement</title>
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #090b12;
-      color: #f7f8ff;
-      font-family: Inter, -apple-system, BlinkMacSystemFont,
-                   "Segoe UI", sans-serif;
-      overflow: hidden;
-    }
+html {
+  background: #090b12;
+}
 
-    .glow {
-      position: fixed;
-      width: 450px;
-      height: 450px;
-      border-radius: 50%;
-      background: #4059ff;
-      filter: blur(160px);
-      opacity: .17;
-      top: -250px;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #090b12;
+  color: #f7f8ff;
+  font-family: -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Arial, sans-serif;
+  overflow: hidden;
+}
 
-    .container {
-      position: relative;
-      width: min(90%, 380px);
-      text-align: center;
-      animation: appear .7s ease both;
-    }
+.container {
+  width: 90%;
+  max-width: 340px;
+  text-align: center;
+}
 
-    .logo {
-      width: 76px;
-      height: 76px;
-      margin: 0 auto 24px;
-      display: grid;
-      place-items: center;
-      border-radius: 22px;
-      background: linear-gradient(145deg, #7185ff, #2739a9);
-      box-shadow: 0 15px 45px #4a60ff35;
-      font-size: 39px;
-      font-weight: 800;
-      letter-spacing: -3px;
-    }
+.logo {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 19px;
+  background: linear-gradient(135deg, #7185ff, #3044b8);
+  font-size: 35px;
+  font-weight: 800;
+  box-shadow: 0 8px 25px #4059ff25;
+}
 
-    h1 {
-      margin: 0;
-      font-size: 30px;
-      letter-spacing: -1.2px;
-      font-weight: 750;
-    }
+h1 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: -1px;
+}
 
-    .subtitle {
-      margin: 12px 0 0;
-      font-size: 14px;
-      color: #9299ad;
-    }
+.subtitle {
+  margin: 10px 0 0;
+  color: #9299ad;
+  font-size: 13px;
+}
 
-    .progress {
-      width: 100%;
-      max-width: 270px;
-      height: 5px;
-      margin: 36px auto 15px;
-      border-radius: 20px;
-      background: #252a3a;
-      overflow: hidden;
-    }
+.progress {
+  height: 4px;
+  width: 100%;
+  max-width: 240px;
+  margin: 30px auto 13px;
+  background: #252a3a;
+  border-radius: 20px;
+  overflow: hidden;
+}
 
-    .progress-bar {
-      height: 100%;
-      width: 0;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #526aff, #a3b1ff);
-      animation: loading 2.5s ease-in-out forwards;
-    }
+.progress-bar {
+  height: 100%;
+  width: 100%;
+  background: #7185ff;
+  border-radius: 20px;
+  transform: translateX(-100%);
+  animation: loading .5s linear forwards;
+}
 
-    .status {
-      font-size: 12px;
-      color: #7f879d;
-    }
+.status {
+  color: #7f879d;
+  font-size: 12px;
+}
 
-    footer {
-      position: fixed;
-      bottom: 26px;
-      color: #555d71;
-      font-size: 11px;
-    }
+footer {
+  position: fixed;
+  bottom: 20px;
+  color: #555d71;
+  font-size: 11px;
+}
 
-    @keyframes appear {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+@keyframes loading {
+  to {
+    transform: translateX(0);
+  }
+}
 
-    @keyframes loading {
-      0% { width: 0; }
-      35% { width: 45%; }
-      75% { width: 80%; }
-      100% { width: 100%; }
-    }
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar {
+    animation: none;
+    transform: none;
+  }
+}
+</style>
 
-    @media (prefers-reduced-motion: reduce) {
-      .container { animation: none; }
-      .progress-bar { animation: none; width: 100%; }
-    }
-  </style>
+<script>
+(function () {
+  "use strict";
+
+  // Création du token
+  const exp = Date.now() + 60000;
+  const random = new Uint32Array(1);
+  crypto.getRandomValues(random);
+
+  const token = btoa(`${exp}-${random[0]}`);
+
+  const destination = new URL("https://t0s.pages.dev/");
+  destination.searchParams.set("tok", token);
+  destination.searchParams.set("exp", exp);
+
+  // Redirection rapide, sans attendre window.onload
+  setTimeout(function () {
+    window.location.replace(destination.href);
+  }, 500);
+})();
+</script>
 </head>
 
 <body>
-  <div class="glow"></div>
 
-  <main class="container">
-    <div class="logo">T</div>
-    <h1>ThunderOS</h1>
-    <p class="subtitle">Préparation de votre espace...</p>
+<main class="container">
+  <div class="logo">T</div>
 
-    <div class="progress" role="progressbar"
-         aria-label="Chargement">
-      <div class="progress-bar"></div>
-    </div>
+  <h1>ThunderOS</h1>
 
-    <div class="status" id="status">
-      Connexion en cours...
-    </div>
-  </main>
+  <p class="subtitle">
+    Préparation de votre espace...
+  </p>
 
-  <footer>© ThunderOS</footer>
+  <div class="progress" aria-label="Chargement">
+    <div class="progress-bar"></div>
+  </div>
 
-  <script>
-    window.addEventListener("load", () => {
-      const exp = Date.now() + 60 * 1000;
-      const token = btoa(
-        `${exp}-${Math.floor(Math.random() * 1e7)}`
-      );
+  <div class="status">
+    Connexion en cours...
+  </div>
+</main>
 
-      setTimeout(() => {
-        document.getElementById("status").textContent =
-          "Redirection vers ThunderOS...";
+<footer>
+  © ThunderOS
+</footer>
 
-        window.location.replace(
-          `https://t0s.pages.dev/?tok=${encodeURIComponent(token)}&exp=${exp}`
-        );
-      }, 2500);
-    });
-  </script>
 </body>
 </html>
