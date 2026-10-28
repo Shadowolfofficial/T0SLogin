@@ -1,157 +1,201 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090b12">
-<title>ThunderOS — Chargement</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <meta name="theme-color" content="#090b12">
 
-html {
-  background: #090b12;
-}
+  <!-- Référencement Google -->
+  <title>ThunderOs</title>
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #090b12;
-  color: #f7f8ff;
-  font-family: -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Arial, sans-serif;
-  overflow: hidden;
-}
+  <meta name="description"
+        content="Découvrez ThunderOs, un système d'exploitation en ligne gratuit avec une interface moderne, des applications et un navigateur intégré. Lancez ThunderOs directement depuis votre navigateur.">
 
-.container {
-  width: 90%;
-  max-width: 340px;
-  text-align: center;
-}
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
 
-.logo {
-  width: 68px;
-  height: 68px;
-  margin: 0 auto 20px;
-  display: grid;
-  place-items: center;
-  border-radius: 19px;
-  background: linear-gradient(135deg, #7185ff, #3044b8);
-  font-size: 35px;
-  font-weight: 800;
-  box-shadow: 0 8px 25px #4059ff25;
-}
+  <!-- Réseaux sociaux -->
+  <meta property="og:title"
+        content="ThunderOs">
 
-h1 {
-  margin: 0;
-  font-size: 27px;
-  font-weight: 750;
-  letter-spacing: -1px;
-}
+  <meta property="og:description"
+        content="Découvrez ThunderOs, un système d'exploitation en ligne gratuit, moderne et accessible depuis votre navigateur.">
 
-.subtitle {
-  margin: 10px 0 0;
-  color: #9299ad;
-  font-size: 13px;
-}
+  <meta property="og:type" content="website">
 
-.progress {
-  height: 4px;
-  width: 100%;
-  max-width: 240px;
-  margin: 30px auto 13px;
-  background: #252a3a;
-  border-radius: 20px;
-  overflow: hidden;
-}
+  <style>
+    :root {
+      --bg: #090b12;
+      --text: #f7f8ff;
+      --muted: #9299ad;
+      --accent: #7185ff;
+    }
 
-.progress-bar {
-  height: 100%;
-  width: 100%;
-  background: #7185ff;
-  border-radius: 20px;
-  transform: translateX(-100%);
-  animation: loading .5s linear forwards;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.status {
-  color: #7f879d;
-  font-size: 12px;
-}
+    html {
+      background: var(--bg);
+    }
 
-footer {
-  position: fixed;
-  bottom: 20px;
-  color: #555d71;
-  font-size: 11px;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Arial, sans-serif;
+      overflow: hidden;
+    }
 
-@keyframes loading {
-  to {
-    transform: translateX(0);
-  }
-}
+    .container {
+      width: 90%;
+      max-width: 350px;
+      text-align: center;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-  .progress-bar {
-    animation: none;
-    transform: none;
-  }
-}
-</style>
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        #7185ff,
+        #3044b8
+      );
+      font-size: 36px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px #4059ff25;
+    }
 
-<script>
-(function () {
-  "use strict";
+    h1 {
+      margin: 0;
+      font-size: 29px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
 
-  // Création du token
-  const exp = Date.now() + 60000;
-  const random = new Uint32Array(1);
-  crypto.getRandomValues(random);
+    .subtitle {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
 
-  const token = btoa(`${exp}-${random[0]}`);
+    .progress {
+      height: 4px;
+      width: 100%;
+      max-width: 245px;
+      margin: 30px auto 14px;
+      background: #252a3a;
+      border-radius: 20px;
+      overflow: hidden;
+    }
 
-  const destination = new URL("https://t0s.pages.dev/");
-  destination.searchParams.set("tok", token);
-  destination.searchParams.set("exp", exp);
+    .progress-bar {
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: inherit;
+      transform: translateX(-100%);
+      animation: loading .5s linear forwards;
+    }
 
-  // Redirection rapide, sans attendre window.onload
-  setTimeout(function () {
-    window.location.replace(destination.href);
-  }, 500);
-})();
-</script>
+    .status {
+      color: #858da4;
+      font-size: 12px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 22px;
+      color: #626a7e;
+      font-size: 11px;
+    }
+
+    @keyframes loading {
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .progress-bar {
+        animation: none;
+        transform: none;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const exp = Date.now() + 60000;
+
+      const random = new Uint32Array(1);
+      crypto.getRandomValues(random);
+
+      const token = btoa(
+        exp + "-" + random[0]
+      );
+
+      const destination = new URL(
+        "https://t0s.pages.dev/"
+      );
+
+      destination.searchParams.set("tok", token);
+      destination.searchParams.set("exp", exp);
+
+      // Redirection après 500 millisecondes
+      setTimeout(function () {
+        window.location.replace(destination.href);
+      }, 500);
+
+    })();
+  </script>
 </head>
 
 <body>
 
-<main class="container">
-  <div class="logo">T</div>
+  <main class="container">
 
-  <h1>ThunderOS</h1>
+    <div class="logo" aria-hidden="true">
+      T
+    </div>
 
-  <p class="subtitle">
-    Préparation de votre espace...
-  </p>
+    <h1>ThunderOs</h1>
 
-  <div class="progress" aria-label="Chargement">
-    <div class="progress-bar"></div>
-  </div>
+    <p class="subtitle">
+      Préparation de votre espace numérique...
+    </p>
 
-  <div class="status">
-    Connexion en cours...
-  </div>
-</main>
+    <div class="progress"
+         role="progressbar"
+         aria-label="Chargement de ThunderOS">
+      <div class="progress-bar"></div>
+    </div>
 
-<footer>
-  © ThunderOS
-</footer>
+    <div class="status">
+      Connexion à ThunderOs...
+    </div>
+
+  </main>
+
+  <footer>
+    © ThunderOs · Tous droits réservés
+  </footer>
 
 </body>
 </html>
